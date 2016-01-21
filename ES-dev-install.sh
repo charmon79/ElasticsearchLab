@@ -6,6 +6,14 @@
 #	Installs & configures Elasticsearch 1.7 for local development use.
 #######################################################################
 
+# Fail script if not root
+me=$( whoami )
+if [ $me -ne "root" ]
+then
+	echo "You need to be root to run this script. Elevate yourself with sudo."
+	exit -1
+fi
+
 # 1. add apt repo for Oracle Java JDK install via webupd8team PPA
 add-apt-repository ppa:webupd8team/java
 
@@ -39,14 +47,14 @@ fi
 apt-get install elasticsearch
 update-rc.d elasticsearch defaults 95 10
 
-# 6. configure a few things in elasticsearch.yml for good measure
-#	-	random cluster name (so that your dev instance & someone else's
-#		don't try to join a cluster with each other)
-#	-	default 1 shard & 0 replicas for indices
-cat /etc/elasticsearch/elasticsearch.yml \
-| sed "s/#cluster.name: elasticsearch/cluster.name: $var/" > /tmp/elasticsearch.yml.new
+# 6. Get preconfigured elasticsearch.yml from GitHub. Back up original file before replacing.
+wget https://raw.githubusercontent.com/charmon79/ElasticsearchLab/master/elasticsearch.yml
+cp /etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml.orig
+mv elasticsearch.yml /etc/elasticsearch/
 
 service elasticsearch start
 
 # 7. install useful plugins (Marvel, head)
+/usr/share/elasticsearch/bin/plugin -install elasticsearch/marvel/latest
+/usr/share/elasticsearch/bin/plugin -install mobz/elasticsearch-head
 
