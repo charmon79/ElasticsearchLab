@@ -27,11 +27,11 @@ fi
 
 # 3. run apt-get update & apt-get-upgrade so we have the latest things
 apt-get update
-apt-get upgrade
+apt-get -y upgrade
 
 # 4. install Oracle Java JDK 8
 echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
-apt-get install oracle-java8-installer
+apt-get -y install oracle-java8-installer
 
 line=$( grep JAVA_HOME /etc/environment )
 if [ $? -eq 1 ]
@@ -44,7 +44,7 @@ then
 fi
 
 # 5. install elasticsearch
-apt-get install elasticsearch
+apt-get -y install elasticsearch
 update-rc.d elasticsearch defaults 95 10
 
 # 6. Get preconfigured elasticsearch.yml from GitHub. Back up original file before replacing.
