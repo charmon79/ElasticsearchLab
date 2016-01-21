@@ -15,7 +15,7 @@ then
 fi
 
 # 1. add apt repo for Oracle Java JDK install via webupd8team PPA
-add-apt-repository ppa:webupd8team/java
+add-apt-repository -y ppa:webupd8team/java
 
 # 2. add apt repo for Elasticsearch
 wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | apt-key add -
