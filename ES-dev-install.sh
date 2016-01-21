@@ -8,7 +8,7 @@
 
 # Fail script if not root
 me=$( whoami )
-if [ $me -ne "root" ]
+if [ "$me" != "root" ]
 then
 	echo "You need to be root to run this script. Elevate yourself with sudo."
 	exit -1
