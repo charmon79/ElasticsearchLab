@@ -1,0 +1,34 @@
+Recommended tools for working with Elasticsearch from a Windows PC:
+
+1.	Postman
+	-	Chrome app with rich GUI for interacting with RESTful services like Elasticsearch.
+	-	More user-friendly than cURL for ad-hoc requests to Elasticsearch.
+	-	Instructions
+		1.	Install Google Chrome (if you don't already have it)
+		2.	Install Postman
+			(https://chrome.google.com/webstore/detail/postman-rest-client-packa/fhbjgbiflinjbdggehcddcbncdddomop?hl=en)
+2.	cURL
+	-	Command-line utility for sending HTTP requests with data to a REST API.
+	-	Useful for scripting.
+	-	Instructions
+		1.	Download cURL (http://curl.haxx.se/download/curl-7.46.0.zip)
+		2.	Unzip somewhere convenient (c:\curl, c:\program files\curl, whatever suits you)
+		3.	Add cURL location to your PATH environment variable (optional, but makes it a lot more convenient to use)
+3.	notepad++
+	-	Powerful text editor, good for writing/editing JSON, which you'll be doing a lot of.
+	-	Instructions
+		1.	Install latest version of notepad++ (https://notepad-plus-plus.org/download)
+		2.	Install JSToolNpp plugin (http://sourceforge.net/projects/jsminnpp)
+			(optional, but handy because it'll pretty-format JSON for you with a keyboard shortcut, and also has a navigator pane that can help when viewing large JSON documents)
+4.	PuTTY suite
+	-	SSH and related client tools for Windows. Essential for working remotely with Linux boxes.
+	-	Instructions
+		1.	Install PuTTY (http://the.earth.li/~sgtatham/putty/latest/x86/putty-0.66-installer.exe)
+		2.	Launch PuTTY and configure sessions for whichever Linux machine(s) you need to connect to.
+			#TODO: add more instructions here
+5.	Curator
+	-	Some of our Elasticsearch management scripts use Curator, an Elasticsearch management tool written in Python.
+	-	Instructions
+		1.	Install Python 3.5.1 (https://www.python.org/downloads/release/python-351/)
+6. JSONLint
+	-	Web-based tool so not just for Windows, but very handy for validating handwritten JSON before sending it to ES.

@@ -1,0 +1,11 @@
+Basic cluster health check:
+	curl -XGET http://server:port/_cat/health?v
+
+Start service manually:
+	sudo /etc/init.d/elasticsearch start
+	*or*
+	sudo service elasticsearch start
+
+Default elasticsearch.yml location (Ubuntu):
+	/etc/elasticsearch/elasticsearch.yml
+

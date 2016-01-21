@@ -1,0 +1,40 @@
+ETL Box setup
+1. Install Java jre
+   1. sudo apt-get update
+   2. sudo apt-get upgrade
+   3. sudo apt-get install build-essential
+   4. sudo apt-get install default-jre
+   5. sudo apt-get install libssl-dev
+   6. sudo reboot
+2. Check to make sure Perl is installed (it should be)
+#3. Check to make sure Make is installed (make —version)
+#4. Check to make sure GCC is installed
+5. Install perl modules:
+   0. sudo apt-get install cpanminus
+   1. sudo cpanm YAML
+   2. sudo cpanm DBI
+   3. sudo cpanm -f DBD::JDBC (force install necessary because a test fails)
+   4. sudo cpanm JSON
+   5. sudo cpanm Data::Dumper
+   6. sudo cpanm Storable
+   7. sudo cpanm Clone
+   8. sudo cpanm Search::Elasticsearch
+   9. sudo cpanm POSIX
+   10. sudo cpanm Scalar::Util
+6. Download the SQLJDBC drivers from Microsoft
+	wget https://download.microsoft.com/download/0/2/A/02AAE597-3865-456C-AE7F-613F99F850A8/sqljdbc_4.2.6420.100_enu.tar.gz
+7. Download Log4j from apache.
+	wget http://archive.apache.org/dist/logging/log4j/1.2.17/log4j-1.2.17.tar.gz
+8. Make the folder /var/lib/java
+9. Copy the sqljdbc.jar and log4j jar files to /var/lib/java.
+10. Find a copy of dbd_jdbc.jar and copy it to /var/lib/java.
+		var=$(sudo find / | grep "dbd_jdbc.jar") | head -n 1)
+		sudo cp $var /var/lib/java
+11. Run this:
+   1. exec java -classpath /var/lib/java/dbd_jdbc.jar:/var/lib/java/log4j-1.2.17.jar:/var/lib/java/sqljdbc4.jar  -Djdbc.drivers=com.microsoft.sqlserver.jdbc.SQLServerDriver  -Ddbd.port=9042 com.vizdom.dbd.jdbc.Server &
+12. If that all works, then Java is correctly installed along with the JDBC drivers and ancillary stuff needed to use the DBI::JDBC.
+
+Troubleshooting:
+1. Make sure java instance with SQL Server JDBC driver is running:
+	pgrep -a java | grep sqljdbc
+

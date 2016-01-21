@@ -1,0 +1,20 @@
+# specifically, Elasticsearch 1.7 on Ubuntu 14.04 LTS
+
+# Step 1 - add apt repo for Oracle Java JDK install via webupd8team PPA
+sudo add-apt-repository ppa:webupd8team/java
+
+# Step 2 - add apt repo for Elasticsearch
+wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+echo "deb http://packages.elastic.co/elasticsearch/1.7/debian stable main" | sudo tee -a /etc/apt/sources.list.d/elasticsearch-1.7.list
+
+# Step 3 - run apt-get update, then install stuff
+sudo apt-get update
+sudo apt-get upgrade
+echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
+sudo apt-get install oracle-java8-installer
+sudo nano /etc/environment, add JAVA_HOME="/usr/lib/jvm/java-8-oracle", save, logout & back in
+
+sudo apt-get install elasticsearch
+
+# Step 4 - make Elasticsearch auto-start on boot
+sudo update-rc.d elasticsearch defaults 95 10
