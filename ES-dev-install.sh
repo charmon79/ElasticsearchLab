@@ -11,7 +11,7 @@ me=$( whoami )
 if [ "$me" != "root" ]
 then
 	echo "You need to be root to run this script. Elevate yourself with sudo."
-	exit -1
+	exit 1
 fi
 
 # 1. add apt repo for Oracle Java JDK install via webupd8team PPA
